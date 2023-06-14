@@ -80,18 +80,24 @@ os.system(f"aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggin
 os.system(f"aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/ckpt/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.ckpt -d /home/demo/source/stable-diffusion-webui/models/Stable-diffusion -o darkSushi25D25D_v20.vae.pt")
 os.system(f"sed -i -e 's/\"sd_model_checkpoint\"\,/\"sd_model_checkpoint\,sd_vae\,CLIP_stop_at_last_layers\"\,/g' /home/demo/source/stable-diffusion-webui/modules/shared.py")
 
+r2_bucket = "https://pub-4f5637caa4b7471fb86792a873303258.r2.dev"
 r2_models = [
   "epicrealism_newEra.safetensors",
   "epicrealism_newCentury.safetensors",
-  "epicrealism_pureEvolution.safetensors"
+  "epicrealism_pureEvolution.safetensors",
 ]
-r2_bucket = "https://pub-4f5637caa4b7471fb86792a873303258.r2.dev"
 sd_model_dir = "/home/demo/source/stable-diffusion-webui/models/Stable-diffusion"
 
 for model in r2_models:
   os.system(f"aria2c --console-log-level=error -c -x 16 -s 16 -k 1M {r2_bucket}/models/{model} -d {sd_model_dir} -o {model}")
 
-r2_inversions = [
+r2_embeddings = [
+  "UnrealisticDream.pt",
+  "BadDream.pt",
 ]
+sd_embeddings_dir = "/home/demo/source/stable-diffusion-webui/embeddings"
+
+for embedding in r2_embeddings:
+  os.system(f"aria2c --console-log-level=error -c -x 16 -s 16 -k 1M {r2_bucket}/textual_inversions/{model} -d {sd_embeddings_dir} -o {model}")
 
 os.system(f"python launch.py --port 8266 --listen --cors-allow-origins=* --xformers --enable-insecure-extension-access --theme dark --gradio-queue --disable-safe-unpickle")
