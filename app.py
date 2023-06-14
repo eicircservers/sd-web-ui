@@ -77,12 +77,14 @@ os.system(f"aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggin
 
 # os.system(f"aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/ckpt/dark-sushi-25d/resolve/main/darkSushi25D25D_v20.safetensors -d /home/demo/source/stable-diffusion-webui/models/Stable-diffusion -o darkSushi25D25D_v20.safetensors")
 os.system(f"aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/ckpt/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.ckpt -d /home/demo/source/stable-diffusion-webui/models/Stable-diffusion -o darkSushi25D25D_v20.vae.pt")
-
 os.system(f"sed -i -e 's/\"sd_model_checkpoint\"\,/\"sd_model_checkpoint\,sd_vae\,CLIP_stop_at_last_layers\"\,/g' /home/demo/source/stable-diffusion-webui/modules/shared.py")
 
-# models
-sd_model_dir = "/home/demo/source/stable-diffusion-webui/models/Stable-diffusion"
-os.system(f"gdown 1IqDA7CO9sqCAfXCK03gPw-tT8Y3AzUWM -O {sd_model_dir}/chilloutmix_NiPrunedFp32Fix.safetensors")
-
-
+# 1YiwgKlkk6tV9Aej4BNBy7W81FzNtdyF5
 os.system(f"python launch.py --port 8266 --listen --cors-allow-origins=* --xformers --enable-insecure-extension-access --theme dark --gradio-queue --disable-safe-unpickle")
+
+# models
+sd_model_dir = "/home/demo/source/stable-diffusion-webui/models/Stable-diffusion/"
+#os.system(f"gdown 1IqDA7CO9sqCAfXCK03gPw-tT8Y3AzUWM -O {sd_model_dir}/chilloutmix_NiPrunedFp32Fix.safetensors")
+#os.system(f"gdown 1KkDdCEXIJ8KQkhrxWG5r7uXYKzkyBCKa -O {sd_model_dir}/epicrealism_newEra.safetensors")
+os.system(f"gdown 1YiwgKlkk6tV9Aej4BNBy7W81FzNtdyF5 -O {sd_model_dir} --folder")
+
