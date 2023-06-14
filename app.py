@@ -25,6 +25,7 @@ os.system(f"git clone https://github.com/catppuccin/stable-diffusion-webui /home
 os.system(f"git clone https://github.com/camenduru/a1111-sd-webui-locon /home/demo/source/stable-diffusion-webui/extensions/a1111-sd-webui-locon")
 os.system(f"git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui-rembg /home/demo/source/stable-diffusion-webui/extensions/stable-diffusion-webui-rembg")
 os.system(f"git clone https://github.com/ashen-sensored/stable-diffusion-webui-two-shot /home/demo/source/stable-diffusion-webui/extensions/stable-diffusion-webui-two-shot")
+
 os.system(f"git clone https://github.com/Coyote-A/ultimate-upscale-for-automatic1111 /home/demo/source/stable-diffusion-webui/extensions/ultimate-upscale")
 os.system(f"git clone https://github.com/adieyal/sd-dynamic-prompts /home/demo/source/stable-diffusion-webui/extensions/sd-dynamic-prompts")
 os.system(f"git clone https://github.com/pkuliyi2015/multidiffusion-upscaler-for-automatic1111 /home/demo/source/stable-diffusion-webui/extensions/multidffusion-upscaler")
@@ -79,12 +80,11 @@ os.system(f"aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggin
 os.system(f"aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/ckpt/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.ckpt -d /home/demo/source/stable-diffusion-webui/models/Stable-diffusion -o darkSushi25D25D_v20.vae.pt")
 os.system(f"sed -i -e 's/\"sd_model_checkpoint\"\,/\"sd_model_checkpoint\,sd_vae\,CLIP_stop_at_last_layers\"\,/g' /home/demo/source/stable-diffusion-webui/modules/shared.py")
 
-# 1YiwgKlkk6tV9Aej4BNBy7W81FzNtdyF5
+r2_models = ["epicrealism_newEra.safetensors"]
+r2_bucket = "https://pub-4f5637caa4b7471fb86792a873303258.r2.dev"
+sd_model_dir = "/home/demo/source/stable-diffusion-webui/models/Stable-diffusion"
+
+for model in r2_models:
+  os.system(f"aria2c --console-log-level=error -c -x 16 -s 16 -k 1M {r2_bucket}/models/{model} -d {sd_model_dir} -o {model}")
+
 os.system(f"python launch.py --port 8266 --listen --cors-allow-origins=* --xformers --enable-insecure-extension-access --theme dark --gradio-queue --disable-safe-unpickle")
-
-# models
-sd_model_dir = "/home/demo/source/stable-diffusion-webui/models/Stable-diffusion/"
-#os.system(f"gdown 1IqDA7CO9sqCAfXCK03gPw-tT8Y3AzUWM -O {sd_model_dir}/chilloutmix_NiPrunedFp32Fix.safetensors")
-#os.system(f"gdown 1KkDdCEXIJ8KQkhrxWG5r7uXYKzkyBCKa -O {sd_model_dir}/epicrealism_newEra.safetensors")
-os.system(f"gdown 1YiwgKlkk6tV9Aej4BNBy7W81FzNtdyF5 -O {sd_model_dir} --folder")
-
