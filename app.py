@@ -1,7 +1,7 @@
 import os
 os.system(f"git lfs install")
 os.system(f"pip install gdown")
-os.system(f"git clone -b v2.2 https://github.com/eicircservers/sd-web-ui /home/demo/source/stable-diffusion-webui")
+os.system(f"git clone -b dev https://github.com/camenduru/stable-diffusion-webui /home/demo/source/stable-diffusion-webui")
 os.chdir(f"/home/demo/source/stable-diffusion-webui")
 
 os.system(f"git clone https://huggingface.co/embed/negative /home/demo/source/stable-diffusion-webui/embeddings/negative")
